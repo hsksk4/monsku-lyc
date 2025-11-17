@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梁延超天天开心≧∀≦</title>
+    <style>
+        /* 全屏主背景 */
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #fff;
+            overflow: hidden; /* 隐藏滚动条 */
+            font-family: "楷体", KaiTi, serif;
+        }
+        /* 主文本（居中） */
+        .main-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40px;
+            font-weight: bold;
+            color: #ffc0cb; /* 粉色 */
+            z-index: 1; /* 主文本在底层 */
+        }
+        /* 小窗口样式 */
+        .love-window {
+            position: absolute;
+            background: #ffc0cb; /* 粉色背景 */
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #000;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+            z-index: 2; /* 小窗口在主文本上层 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 主文本 -->
+    <div class="main-text">梁延超天天开心≧∀≦</div>
+
+    <script>
+        // 表白文本数组
+        const texts = ["梁延超是小猫(>^ω^<)喵", "喜欢梁延超", "帅哥梁延超(✪ω✪)", "爱你么么哒", "永远幸福下去 和你˙ᵕ˙"];
+        // 屏幕尺寸（适配手机）
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+        // 小窗口数量（可调整）
+        const windowCount = 50;
+
+        // 生成随机位置的小窗口
+        function createLoveWindow() {
+            const win = document.createElement("div");
+            win.className = "love-window";
+            // 随机文本
+            win.innerText = texts[Math.floor(Math.random() * texts.length)];
+            // 随机位置（确保窗口不超出屏幕）
+            const winWidth = win.offsetWidth || 120; // 预估算窗口宽度
+            const winHeight = win.offsetHeight || 40; // 预估算窗口高度
+            const x = Math.random() * (screenWidth - winWidth);
+            const y = Math.random() * (screenHeight - winHeight);
+            win.style.left = x + "px";
+            win.style.top = y + "px";
+            document.body.appendChild(win);
+        }
+
+        // 先显示主文本，延迟0.5秒后生成小窗口
+        setTimeout(() => {
+            // 逐个生成小窗口（每0.1秒一个）
+            for (let i = 0; i < windowCount; i++) {
+                setTimeout(createLoveWindow, i * 100);
+            }
+        }, 500);
+    </script>
+</body>
+
+</html>
