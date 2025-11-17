@@ -68,14 +68,9 @@
             document.body.appendChild(win);
         }
 
-        // 先显示主文本，延迟0.5秒后生成小窗口
-        setTimeout(() => {
-            // 逐个生成小窗口（每0.1秒一个）
-            for (let i = 0; i < windowCount; i++) {
-                setTimeout(createLoveWindow, i * 100);
-            }
-        }, 500);
+        setInterval(createLoveWindow,300);
     </script>
 </body>
 
 </html>
+
